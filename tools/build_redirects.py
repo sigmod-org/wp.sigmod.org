@@ -74,7 +74,8 @@ SCRIPT = r"""
   else if (q.has("feed")) go = "feed.xml";
   else if (q.has("s")) go = "search/?q=" + encodeURIComponent(q.get("s"));
   // Old deep links go straight to their new page; everything else gets the notice.
-  if (go !== null) { location.replace(blog + go); return; }
+  // Keep #comment-N anchors: archived comments carry the same ids on the new blog.
+  if (go !== null) { location.replace(blog + go + (go.indexOf("#") < 0 ? location.hash : "")); return; }
   var left = %(delay)d, el = document.getElementById("countdown");
   setInterval(function () {
     if (--left <= 0) location.replace(blog);

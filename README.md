@@ -49,6 +49,7 @@ python3 tools/wp_import.py --latest 1        # newest post
 python3 tools/wp_import.py --post 3855       # specific post IDs
 python3 tools/wp_import.py --page 2 3873     # specific page IDs (About, Editors)
 python3 tools/wp_import.py --all             # every published post
+python3 tools/wp_import.py --comments        # archive comment threads of imported posts
 python3 tools/audit_posts.py                 # writes IMPORT_REVIEW.md here
 ```
 
@@ -65,7 +66,10 @@ The importer is idempotent (files are keyed by WordPress ID) and:
   `http://` embeds.
 
 Files with `keep_local_edits: true` in their front matter (e.g. the About page) are
-never overwritten unless `--force` is given. Comments have not been migrated.
+never overwritten unless `--force` is given. `--comments` saves every approved
+comment of an imported post to the blog's `_data/comments/<wp_id>.json` (in thread
+order, with nesting depth), where they are shown read-only. Old `#comment-N` links
+keep working: the redirect keeps the anchor and the archived comments have the same ids.
 
 [IMPORT_REVIEW.md](IMPORT_REVIEW.md) lists imported posts flagged for a check by
 eye, with the verdicts so far.
