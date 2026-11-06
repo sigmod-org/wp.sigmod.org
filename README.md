@@ -1,7 +1,7 @@
 # wp.sigmod.org
 
 The old WordPress home of the ACM SIGMOD Blog. The blog has moved to
-**<https://sigmod-org.github.io/blog.sigmod.org/>**
+**<https://blog.sigmod.org/>**
 ([sigmod-org/blog.sigmod.org](https://github.com/sigmod-org/blog.sigmod.org));
 this repository holds everything that concerns the old site, so the blog itself
 does not have to.
@@ -33,10 +33,8 @@ python3 tools/build_redirects.py          # --blog ../blog.sigmod.org
 Re-run it after importing more posts. The new blog's address and the delay are
 `NEW_BLOG` and `DELAY` at the top of the script.
 
-For old links to keep working, point the `wp.sigmod.org` DNS at GitHub Pages and
-set it as this repository's custom domain (*Settings → Pages*), once the
-WordPress site is no longer needed. When the blog gets its own domain, update
-`NEW_BLOG` and re-run the script.
+This site is served at <https://wp.sigmod.org/> (custom domain set in
+*Settings → Pages*, HTTPS enforced), so old links reach it directly.
 
 ## Importing from WordPress
 

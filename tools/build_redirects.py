@@ -9,7 +9,7 @@ _data/categories.yml), so re-run this after importing:
 
     python3 tools/build_redirects.py [--blog ../blog.sigmod.org]
 
-Change NEW_BLOG below once blog.sigmod.org is served from its own domain.
+NEW_BLOG below is the new blog's address.
 """
 
 import argparse
@@ -19,7 +19,7 @@ import json
 import os
 import re
 
-NEW_BLOG = "https://sigmod-org.github.io/blog.sigmod.org/"
+NEW_BLOG = "https://blog.sigmod.org/"
 DELAY = 10  # seconds before the landing page sends visitors to the new blog
 
 HERE = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))

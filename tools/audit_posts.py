@@ -178,7 +178,7 @@ def audit(site_url, check_external=True):
 
 if __name__ == "__main__":
     ap = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
-    ap.add_argument("--site-url", default="https://sigmod-org.github.io/blog.sigmod.org")
+    ap.add_argument("--site-url", default="https://blog.sigmod.org")
     ap.add_argument("--offline", action="store_true", help="skip checking that external images still load")
     ap.add_argument("--blog", default=ROOT, help="checkout of the new blog (default: ../blog.sigmod.org)")
     a = ap.parse_args()
