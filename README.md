@@ -38,8 +38,8 @@ This site is served at <https://wp.sigmod.org/> (custom domain set in
 
 ## Importing from WordPress
 
-These need the WordPress site online (they use its public REST API, no
-credentials). Both write into the blog checkout (`--blog`, default
+These need the old WordPress site online at <https://wp-old.sigmod.org/> (they
+use its public REST API, no credentials). Both write into the blog checkout (`--blog`, default
 `../blog.sigmod.org`):
 
 ```bash
@@ -48,6 +48,7 @@ python3 tools/wp_import.py --post 3855       # specific post IDs
 python3 tools/wp_import.py --page 2 3873     # specific page IDs (About, Editors)
 python3 tools/wp_import.py --all             # every published post
 python3 tools/wp_import.py --comments        # archive comment threads of imported posts
+python3 tools/wp_import.py --views           # save view counts of imported posts and pages
 python3 tools/audit_posts.py                 # writes IMPORT_REVIEW.md here
 ```
 
@@ -68,6 +69,9 @@ never overwritten unless `--force` is given. `--comments` saves every approved
 comment of an imported post to the blog's `_data/comments/<wp_id>.json` (in thread
 order, with nesting depth), where they are shown read-only. Old `#comment-N` links
 keep working: the redirect keeps the anchor and the archived comments have the same ids.
+`--views` saves each imported post's and page's view count (Post Views Counter
+plugin) to the blog's `_data/legacy_views.yml`; the blog adds its new GoatCounter
+views to it. Run it one last time just before the WordPress site goes offline.
 
 [IMPORT_REVIEW.md](IMPORT_REVIEW.md) lists imported posts flagged for a check by
 eye, with the verdicts so far.
