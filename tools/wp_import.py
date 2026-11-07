@@ -16,7 +16,8 @@ Examples:
 What it writes:
     _posts/YYYY-MM-DD-<slug>.html   post body (raw WordPress HTML) + front matter
     _pages/<slug>.html              imported WordPress pages
-    _data/authors.yml               author name / url / avatar, keyed by slug
+    _data/authors.yml               author name / url / avatar, keyed by slug (hand-added
+                                    fields such as `members` are kept)
     _data/categories.yml            every WordPress category (for legacy ?cat= links)
     category/<slug>.html            one listing page per category in use
     author/<slug>.html              one listing page per author in use
@@ -178,7 +179,9 @@ def dump_yaml_map(path, data, header):
         for key in sorted(data):
             f.write(f"{yq(key)}:\n")
             for k, v in data[key].items():
-                f.write(f"  {k}: {v if isinstance(v, int) else yq(v)}\n")
+                # Lists (e.g. `members`, added by hand for co-written posts) stay YAML flow lists.
+                val = v if isinstance(v, int) else json.dumps(v, ensure_ascii=False) if isinstance(v, list) else yq(v)
+                f.write(f"  {k}: {val}\n")
 
 
 # --------------------------------------------------------------------------- content
